@@ -17,10 +17,13 @@
         >
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v4.view.ViewPager
-        android:layout_height="0dp"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+
+
         />
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation_bar"
