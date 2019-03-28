@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initData();
 
-
         mViewPager.setAdapter(fpAdapter);
     }
 
