@@ -16,10 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    //声明底部导航控件
     private BottomNavigationView navigationView;
+    //声明3大fragment，分别是待办、日记、日历
     private TodoFragment todoFragment;
     private DiaryFragment diaryFragment;
     private CalenderFragment calenderFragment;
+
 
     private ViewPager mViewPager;
     private List<Fragment> fragmentList;
@@ -30,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //初始化视图、数据
         initView();
         initData();
 
+
         mViewPager.setAdapter(fpAdapter);
-
-
     }
 
     private void initData() {
@@ -54,12 +59,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView(){
+        //获取到3个fragment的对象
         todoFragment = new TodoFragment();
         diaryFragment = new DiaryFragment();
         calenderFragment = new CalenderFragment();
 
         fragmentList = new ArrayList<Fragment>();
 
+        //获取到Viewpager和底部导航的对象
         mViewPager = findViewById(R.id.viewpager);
         navigationView = findViewById(R.id.bottom_navigation_bar);
 
