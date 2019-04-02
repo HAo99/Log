@@ -22,6 +22,8 @@ public class TodoFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initTestData();
+
     }
 
     @Nullable
@@ -34,9 +36,8 @@ public class TodoFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        initTestData();
-        initData();
         super.onActivityCreated(savedInstanceState);
+        initData();
     }
 
     private void initTestData() {
