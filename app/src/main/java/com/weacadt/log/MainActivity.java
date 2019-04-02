@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private List<Fragment> fragmentList;
     private FragmentPagerAdapter fpAdapter;
+
+    private Toolbar toolbar;
 
 
     @Override
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         //获取到Viewpager和底部导航的对象
         mViewPager = findViewById(R.id.viewpager);
         navigationView = findViewById(R.id.bottom_navigation_bar);
+        toolbar = findViewById(R.id.toolbar);
 
         fragmentList.add(todoFragment);
         fragmentList.add(diaryFragment);
@@ -84,12 +88,15 @@ public class MainActivity extends AppCompatActivity {
             switch (menuItem.getItemId()){
                 case R.id.bottom_navigation_todo:
                     mViewPager.setCurrentItem(0);
+                    toolbar.setTitle("今日");
                     return true;
                 case R.id.bottom_navigation_diary:
                     mViewPager.setCurrentItem(1);
+                    toolbar.setTitle("日记");
                     return true;
                 case R.id.bottom_navigation_calender:
                     mViewPager.setCurrentItem(2);
+                    toolbar.setTitle("日历");
                     return true;
             }
             return false;
@@ -107,12 +114,15 @@ public class MainActivity extends AppCompatActivity {
             switch (i){
                 case 0:
                     navigationView.setSelectedItemId(R.id.bottom_navigation_todo);
+                    toolbar.setTitle("今日");
                     break;
                 case 1:
                     navigationView.setSelectedItemId(R.id.bottom_navigation_diary);
+                    toolbar.setTitle("日记");
                     break;
                 case 2:
                     navigationView.setSelectedItemId(R.id.bottom_navigation_calender);
+                    toolbar.setTitle("日历");
                     break;
             }
         }
