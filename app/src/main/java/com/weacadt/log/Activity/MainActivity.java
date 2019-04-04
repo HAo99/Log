@@ -1,15 +1,24 @@
 package com.weacadt.log.Activity;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
+
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 import com.weacadt.log.Fragment.CalendarFragment;
 import com.weacadt.log.Fragment.DiaryFragment;
 import com.weacadt.log.Fragment.TodoFragment;
@@ -21,7 +30,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     //声明底部导航控件
-    private BottomNavigationView navigationView;
+    private DrawerLayout mDrawerLayout;
+    private BottomNavigationView bottomNavView;
+    private NavigationView sideNavView;
     //声明3大fragment，分别是待办、日记、日历
     private TodoFragment todoFragment;
     private DiaryFragment diaryFragment;
@@ -71,17 +82,52 @@ public class MainActivity extends AppCompatActivity {
         fragmentList = new ArrayList<Fragment>();
 
         //获取到Viewpager和底部导航的对象
+        mDrawerLayout = findViewById(R.id.layout_drawer);
         mViewPager = findViewById(R.id.viewpager);
-        navigationView = findViewById(R.id.bottom_navigation_bar);
-        toolbar = findViewById(R.id.toolbar);
+        bottomNavView = findViewById(R.id.bottom_nav_view);
+        sideNavView = findViewById(R.id.side_nav_view);
+
+        toolbar = findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+        }
+
 
         fragmentList.add(todoFragment);
         fragmentList.add(diaryFragment);
         fragmentList.add(calendarFragment);
 
-        navigationView.setOnNavigationItemSelectedListener(itemSelectedListener);
-        mViewPager.addOnPageChangeListener(pageChangeListener);
+        sideNavView.setCheckedItem(R.id.home);
 
+        bottomNavView.setOnNavigationItemSelectedListener(itemSelectedListener);
+        mViewPager.addOnPageChangeListener(pageChangeListener);
+        sideNavView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.test1:
+                Toast.makeText(MainActivity.this, "你点击了测试按钮1", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.test2:
+                Toast.makeText(MainActivity.this, "你点击了测试按钮2", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return false;
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener itemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -115,15 +161,15 @@ public class MainActivity extends AppCompatActivity {
         public void onPageSelected(int i) {
             switch (i){
                 case 0:
-                    navigationView.setSelectedItemId(R.id.bottom_navigation_todo);
+                    bottomNavView.setSelectedItemId(R.id.bottom_navigation_todo);
                     toolbar.setTitle("今日");
                     break;
                 case 1:
-                    navigationView.setSelectedItemId(R.id.bottom_navigation_diary);
+                    bottomNavView.setSelectedItemId(R.id.bottom_navigation_diary);
                     toolbar.setTitle("日记");
                     break;
                 case 2:
-                    navigationView.setSelectedItemId(R.id.bottom_navigation_calender);
+                    bottomNavView.setSelectedItemId(R.id.bottom_navigation_calender);
                     toolbar.setTitle("日历");
                     break;
             }
@@ -132,6 +178,27 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPageScrollStateChanged(int i) {
 
+        }
+    };
+
+    private NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.home:
+                    Toast.makeText(MainActivity.this, "你点击了主页按钮!", Toast.LENGTH_SHORT).show();
+                    mDrawerLayout.closeDrawers();
+                    return true;
+                case R.id.setting:
+                    Toast.makeText(MainActivity.this, "你点击了设置按钮！", Toast.LENGTH_SHORT).show();
+                    mDrawerLayout.closeDrawers();
+                    return true;
+                case R.id.about:
+                    mDrawerLayout.closeDrawers();
+                    AboutActivity.actionStart(MainActivity.this);
+                    return true;
+            }
+            return false;
         }
     };
 
