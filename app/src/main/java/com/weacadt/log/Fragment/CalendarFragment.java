@@ -1,4 +1,4 @@
-package com.weacadt.log;
+package com.weacadt.log.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CalenderFragment extends Fragment {
+import com.weacadt.log.R;
+
+public class CalendarFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

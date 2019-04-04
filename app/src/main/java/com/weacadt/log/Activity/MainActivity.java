@@ -1,17 +1,19 @@
-package com.weacadt.log;
+package com.weacadt.log.Activity;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
+
+import com.weacadt.log.Fragment.CalendarFragment;
+import com.weacadt.log.Fragment.DiaryFragment;
+import com.weacadt.log.Fragment.TodoFragment;
+import com.weacadt.log.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     //声明3大fragment，分别是待办、日记、日历
     private TodoFragment todoFragment;
     private DiaryFragment diaryFragment;
-    private CalenderFragment calenderFragment;
+    private CalendarFragment calendarFragment;
 
 
     private ViewPager mViewPager;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         //获取到3个fragment的对象
         todoFragment = new TodoFragment();
         diaryFragment = new DiaryFragment();
-        calenderFragment = new CalenderFragment();
+        calendarFragment = new CalendarFragment();
 
         fragmentList = new ArrayList<Fragment>();
 
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentList.add(todoFragment);
         fragmentList.add(diaryFragment);
-        fragmentList.add(calenderFragment);
+        fragmentList.add(calendarFragment);
 
         navigationView.setOnNavigationItemSelectedListener(itemSelectedListener);
         mViewPager.addOnPageChangeListener(pageChangeListener);

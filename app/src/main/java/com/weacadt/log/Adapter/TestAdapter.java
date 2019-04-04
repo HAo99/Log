@@ -1,4 +1,4 @@
-package com.weacadt.log;
+package com.weacadt.log.Adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,9 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.weacadt.log.R;
+import com.weacadt.log.Data.Test;
+
 import java.util.List;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {

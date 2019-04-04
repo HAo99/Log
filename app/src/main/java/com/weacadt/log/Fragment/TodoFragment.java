@@ -1,4 +1,4 @@
-package com.weacadt.log;
+package com.weacadt.log.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.lang.reflect.Array;
+import com.weacadt.log.R;
+import com.weacadt.log.Data.Test;
+import com.weacadt.log.Adapter.TestAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
