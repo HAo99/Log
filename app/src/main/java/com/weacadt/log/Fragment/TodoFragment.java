@@ -1,16 +1,19 @@
-package com.weacadt.log;
+package com.weacadt.log.Fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.lang.reflect.Array;
+import com.weacadt.log.R;
+import com.weacadt.log.Data.Test;
+import com.weacadt.log.Adapter.TestAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,8 @@ public class TodoFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initTestData();
+
     }
 
     @Nullable
@@ -34,9 +39,8 @@ public class TodoFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        initTestData();
-        initData();
         super.onActivityCreated(savedInstanceState);
+        initData();
     }
 
     private void initTestData() {

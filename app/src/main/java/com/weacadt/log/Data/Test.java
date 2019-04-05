@@ -1,4 +1,4 @@
-package com.weacadt.log;
+package com.weacadt.log.Data;
 
 public class Test {
     private String todoThing;
